@@ -1,28 +1,27 @@
-import math
-import pygame
-import time
-import random
-import sys
+import pygame, sys
+from settings import WIDTH, HEIGHT, NAV_THICKNESS
+from world import World
 
 
-#Setup de pygame
+#stup pygame environnement
 pygame.init()
-screen = pygame.display.set_mode((1000,700))
-clock = pygame.time.Clock()
-running = True
-
-# caption and icon
-pygame.display.set_caption("Space Invaders")
-screen_icon = pygame.image.load('')
+screen = pygame.display.set_mode((WIDTH, HEIGHT + NAV_THICKNESS))
+pygame.display.set_caption("Space Invader")
+run = True
 
 
 #setup des valeurs
 score_value = 0
-scoreX = 5
-scoreY = 5
+x = (width*0.95)        
+y = (height*0.5)
+vel = 1
+
+#isep image
+character = pygame.image.load('isep.png')
+def add_character_at_location(x,y):
+    screen.blit(character, (x,y))
 
 font = pygame.font.Font('freesansbold.ttf', 20)
-
 # Game Over
 game_over_font = pygame.font.Font('freesansbold.ttf', 64)
 
@@ -39,17 +38,26 @@ def game_over():
     screen.blit(game_over_text, (190, 250))
 
 #setup to make invaders game
-while running:
+while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-    screen.fill((30,30,30))
-
+            run = False
     pygame.display.flip()
 
-    clock.tick(60)  # limits FPS to 60
+    #keys 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        x -= vel
+    if keys[pygame.K_RIGHT]:
+        x += vel
+    if keys[pygame.K_UP]:
+        y -= vel
+    if keys[pygame.K_DOWN]:
+        y += vel
+    screen.fill((0,0,0))
+    pygame.draw.rect(screen, (255, 0, 0), (x,y,width,height))
+    pygame.display.update()
+
+
 
 pygame.quit()
-
-
-if ket
