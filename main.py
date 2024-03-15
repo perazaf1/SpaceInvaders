@@ -12,8 +12,9 @@ clock = pygame.time.Clock()
 running = True
 
 # caption and icon
-pygame.display.set_caption("Bienvenue sur le jeu\
- Space Invaders par: Alheli, Axel, Louis et Paul-Emile")
+pygame.display.set_caption("Space Invaders")
+screen_icon = pygame.image.load('')
+
 
 #setup des valeurs
 score_value = 0
@@ -37,8 +38,7 @@ def game_over():
                                            True, (255,255,255))
     screen.blit(game_over_text, (190, 250))
 
-
-
+#setup to make invaders game
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -51,3 +51,5 @@ while running:
 
 pygame.quit()
 
+
+if ket
